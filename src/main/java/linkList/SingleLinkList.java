@@ -165,6 +165,22 @@ public class SingleLinkList {
         while (stack.size() > 0) {
             System.out.println(stack.pop());
         }
+    }
 
+    public SingleLinkList  mergeTwoOrderLinkList (SingleLinkList srcLinkList, SingleLinkList tarLinkList) {
+        Item cur = srcLinkList.getHead().getNext();
+        Item next = null;
+        if (tarLinkList.getWorkedItemCounts() == 0) {
+            return srcLinkList;
+        } else if (srcLinkList.getWorkedItemCounts() ==0) {
+            return tarLinkList;
+        }
+        while (cur != null) {
+            next = cur.getNext();
+            cur.setNext(null);
+            tarLinkList.addItemByOrder(cur);
+            cur = next;
+        }
+        return tarLinkList;
     }
 }
